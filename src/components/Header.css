@@ -1,0 +1,158 @@
+.header {
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  height: 40px;
+}
+
+.header-left .logo {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.header-center {
+  display: flex;
+  gap: 30px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon {
+  font-size: 14px;
+}
+
+.nav-text {
+  font-size: 14px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification-icon {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.feedback-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-name {
+  font-size: 14px;
+}
+
+.header-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sub-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.sub-nav-item {
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 3px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sub-nav-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sub-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sub-nav-name {
+  font-size: 12px;
+}
+
+.sub-nav-version {
+  font-size: 10px;
+  opacity: 0.8;
+  font-weight: normal;
+}
+
+.header-actions {
+  font-size: 12px;
+}
+
+.action-link {
+  color: #ffd700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .header-center {
+    display: none;
+  }
+  
+  .header-top {
+    padding: 8px 10px;
+  }
+  
+  .sub-nav {
+    gap: 10px;
+  }
+  
+  .sub-nav-item {
+    font-size: 11px;
+  }
+}
