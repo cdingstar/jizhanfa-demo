@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import TaskManager from './components/TaskManager';
 import TaskResultWindow from './components/tasks/TaskResultWindow';
+import VehicleResultWindow from './components/tasks/VehicleResultWindow';
 
 function App() {
   const [activeMenu, setActiveMenu] = useState('同行人');
@@ -63,12 +64,22 @@ function App() {
   const filteredTasks = tasks.filter(task => task.type === activeMenu);
 
   if (viewingTask) {
-    return (
-      <TaskResultWindow 
-        task={viewingTask} 
-        onClose={handleCloseTaskView}
-      />
-    );
+    // 根据任务类型选择不同的结果窗口组件
+    if (viewingTask.type === '同行车辆') {
+      return (
+        <VehicleResultWindow 
+          task={viewingTask} 
+          onClose={handleCloseTaskView}
+        />
+      );
+    } else {
+      return (
+        <TaskResultWindow 
+          task={viewingTask} 
+          onClose={handleCloseTaskView}
+        />
+      );
+    }
   }
 
   return (

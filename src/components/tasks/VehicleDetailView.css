@@ -1,0 +1,294 @@
+.vehicle-detail-view {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.detail-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 500px;
+}
+
+/* 左侧车辆信息面板 */
+.vehicle-info-panel {
+  background: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+  padding: 20px;
+}
+
+.info-header {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #4a90e2;
+}
+
+.info-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 13px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.plate-number {
+  font-family: 'Courier New', monospace;
+  background: #e3f2fd;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #1976d2;
+}
+
+/* 右侧图片展示面板 */
+.image-display-panel {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.image-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.image-counter {
+  background: #4a90e2;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* 图片容器 */
+.image-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(74, 144, 226, 0.9);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.nav-btn:hover {
+  background: #357abd;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.main-image {
+  width: 100%;
+  height: 300px;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.vehicle-placeholder {
+  text-align: center;
+  color: #6c757d;
+}
+
+.vehicle-placeholder .vehicle-icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.vehicle-placeholder p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* 图片信息 */
+.image-info {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.image-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.meta-value {
+  font-size: 13px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.confidence {
+  color: #28a745;
+}
+
+/* 底部缩略图条 */
+.thumbnail-strip {
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  padding: 16px 20px;
+}
+
+.thumbnail-strip h4 {
+  margin: 0 0 12px 0;
+  color: #2c3e50;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.thumbnails {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  width: 120px;
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  border-color: #4a90e2;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+}
+
+.thumb-placeholder {
+  height: 60px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.thumb-icon {
+  font-size: 24px;
+  opacity: 0.7;
+}
+
+.thumb-info {
+  text-align: center;
+}
+
+.thumb-time {
+  font-size: 11px;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.thumb-camera {
+  font-size: 10px;
+  color: #6c757d;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .detail-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .vehicle-info-panel {
+    border-right: none;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .image-meta {
+    grid-template-columns: 1fr;
+  }
+  
+  .thumbnails {
+    gap: 8px;
+  }
+  
+  .thumbnail {
+    width: 100px;
+  }
+}
