@@ -1,13 +1,18 @@
 import React from 'react';
 import './VehicleCell.css';
 
-const VehicleCell = ({ vehicle, onClick }) => {
+const VehicleCell = ({ vehicle, onClick, showCount = true, clickable = true }) => {
   return (
-    <div className="vehicle-cell" onClick={() => onClick(vehicle)}>
-      {/* 右上角数字标识 */}
-      <div className="count-indicator">
-        <span className="count-number">{vehicle.count}</span>
-      </div>
+    <div 
+      className={`vehicle-cell ${!clickable ? 'non-clickable' : ''}`} 
+      onClick={clickable ? () => onClick(vehicle) : undefined}
+    >
+      {/* 右上角数字标识 - 根据showCount参数决定是否显示 */}
+      {showCount && (
+        <div className="count-indicator">
+          <span className="count-number">{vehicle.count}</span>
+        </div>
+      )}
       
       {/* 车辆预览图区域 */}
       <div className="vehicle-preview-container">

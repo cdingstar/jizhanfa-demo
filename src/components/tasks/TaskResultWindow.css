@@ -13,35 +13,101 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.result-header {
-  background: white;
-  padding: 16px 20px;
-  border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 0;
+/* 顶部结果头部已移除，不再需要相关样式 */
+
+/* 导航头部样式 */
+/* 顶部导航区紧凑化 */
+.navigation-header {
+  display: grid;
+  grid-template-columns: 1fr auto; /* 左右布局更紧凑 */
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px; /* 减少垂直占用 */
+}
+
+.search-button {
+  padding: 6px 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.search-button:hover {
+  background: #0056b3;
+}
+
+.back-button {
+  padding: 6px 12px;
+  background: #007bff; /* 与检索按钮使用相同的蓝色 */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.back-button:hover {
+  background: #0056b3; /* 与检索按钮使用相同的悬停色 */
+}
+
+.detail-actions {
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
   align-items: center;
 }
 
-.header-left {
-  flex: 1;
-}
-
-.header-left h2 {
-  color: #2c3e50;
-  margin: 0 0 8px 0;
-  font-size: 18px;
-}
-
-.task-info {
-  display: flex;
-  gap: 20px;
-  color: #7f8c8d;
+.export-button {
+  padding: 6px 12px;
+  background: #28a745; /* 绿色背景，表示导出操作 */
+  color: white;
+  border: none;
+  border-radius: 4px;
   font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
 }
 
-.header-right {
-  flex-shrink: 0;
+.export-button:hover {
+  background: #218838;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-button.wide {
+  padding: 6px 16px; /* 检索按钮更宽一些 */
+  min-width: 80px; /* 确保最小宽度 */
+}
+
+/* 详情页面头部样式 */
+.detail-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.detail-header h3 {
+  margin: 0 0 4px 0;
+  color: #2c3e50;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.detail-subtitle {
+  margin: 0;
+  color: #6c757d;
+  font-size: 14px;
 }
 
 .summary-stats {
@@ -90,11 +156,28 @@
   }
 }
 
+
+
 .result-content {
   background: white;
-  padding: 20px;
-  padding-bottom: 68px; /* 减少底部内边距，适应更紧凑的分页区域 */
+  padding: 16px; /* 缩小整体内边距 */
   min-height: calc(100vh - 80px);
+}
+
+/* 详情模式：去掉底部预留空间，容器高度自适应 */
+.result-content.detail-mode {
+  padding-bottom: 8px; /* 更紧凑的底部空间 */
+  min-height: calc(100vh - 60px); /* 确保容器有足够高度让分页条能推到底部 */
+  display: flex;
+  flex-direction: column; /* 使用flex布局，让分页条能推到底部 */
+}
+
+/* 详情模式：分页条改为普通流式布局，贴近内容 */
+.result-content.detail-mode .pagination-controls {
+  position: static;
+  padding: 6px 0; /* 贴近内容的轻量间距 */
+  border-top: 1px solid #eaeaea;
+  margin-top: auto; /* 推到容器底部 */
 }
 
 .result-content h3 {
@@ -112,14 +195,209 @@
 
 
 
-/* 缩略图网格样式 - 最大化显示 */
+/* 汇总模式布局 */
+.summary-layout {
+  display: flex;
+  height: calc(100vh - 200px);
+  min-height: 600px;
+  position: relative;
+}
+
+.vehicle-list-panel {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+  min-width: 300px;
+}
+
+.map-panel {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  min-width: 200px;
+  height: 100%; /* 确保地图面板占满高度 */
+}
+
+/* 拖拽分隔条样式 */
+.resize-handle {
+  width: 20px;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+  transition: background-color 0.2s;
+  flex-shrink: 0; /* 防止分隔条被压缩 */
+}
+
+.resize-handle:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.resize-handle.dragging {
+  background-color: rgba(0, 123, 255, 0.2);
+}
+
+.resize-line {
+  width: 2px;
+  height: 60px;
+  background: #ddd;
+  border-radius: 1px;
+  transition: background-color 0.2s;
+}
+
+.resize-handle:hover .resize-line {
+  background: #007bff;
+}
+
+.resize-handle.dragging .resize-line {
+  background: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.map-container {
+  flex: 1;
+  background: #eaeaea; /* 右侧地图底色灰色，充满容器 */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 100%; /* 确保地图容器占满父容器高度 */
+  min-height: 0; /* 允许flex子项收缩 */
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #eaeaea; /* 与容器一致的灰色，完全铺满 */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 20px;
+}
+
+.map-content h4 {
+  margin: 0 0 16px 0;
+  color: #2c3e50;
+  font-size: 16px;
+  text-align: center;
+}
+
+.map-controls {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.map-control-btn {
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.map-control-btn:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.vehicle-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.vehicle-marker {
+  position: absolute;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.vehicle-marker:hover {
+  transform: scale(1.2);
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.legend-marker {
+  font-size: 14px;
+}
+
+/* 缩略图网格样式 - 最大化展示 */
 .thumbnail-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-  margin-bottom: 0; /* 移除底部边距，因为分页区域已固定 */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* 更密集 */
+  gap: 10px; /* 更小间距 */
+  margin-bottom: 8px; /* 更小底部距 */
   padding: 0;
+  flex: 1;
+  overflow-y: auto;
 }
+
+/* 详情模式最大化展示 */
+.result-content.detail-mode .thumbnail-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px; /* 更紧凑 */
+  margin-bottom: 6px;
+  flex: 1; /* 让网格占用剩余空间，推动分页条到底部 */
+}
+
+/* 详情模式卡片进一步紧凑化（复用VehicleCell内部样式的话可在该组件CSS中微调） */
+.detail-mode .card {
+  padding: 8px; /* 收紧卡片内边距 */
+}
+.detail-mode .card-title { font-size: 13px; }
+.detail-mode .card-subtitle { font-size: 11px; }
+.detail-mode .card-footer { padding-top: 6px; }
 
 /* 响应式布局 */
 @media (min-width: 1200px) {
@@ -140,6 +418,33 @@
   }
 }
 
+/* 平板响应式 */
+@media (max-width: 1024px) {
+  .summary-layout {
+    flex-direction: column;
+    height: auto;
+    min-height: 800px; /* 确保有足够高度 */
+  }
+  
+  .vehicle-list-panel {
+    width: 100% !important;
+    height: 400px;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  
+  .map-panel {
+    width: 100% !important;
+    flex: 1; /* 让地图面板占用剩余空间 */
+    min-height: 400px; /* 最小高度 */
+    margin-left: 0;
+  }
+  
+  .resize-handle {
+    display: none;
+  }
+}
+
 @media (max-width: 599px) {
   .thumbnail-grid {
     grid-template-columns: 1fr;
@@ -148,4 +453,366 @@
   .result-content {
     padding: 16px;
   }
+  
+  .navigation-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .search-button {
+    align-self: flex-end;
+  }
+  
+  .vehicle-list-panel {
+    width: 100% !important;
+    height: 350px;
+    padding: 12px;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+  
+  .map-panel {
+    width: 100% !important;
+    flex: 1;
+    min-height: 300px;
+    margin-left: 0;
+  }
+  
+  .resize-handle {
+    display: none;
+  }
+  
+  .map-content {
+    padding: 12px;
+  }
+  
+  .map-content h4 {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .search-modal {
+    width: 95% !important;
+    max-width: none !important;
+  }
+}
+
+/* 模态框样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.search-modal {
+  background: white;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f9fa;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.modal-body {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid #e0e0e0;
+  background: #f8f9fa;
+}
+
+.cancel-button {
+  padding: 8px 16px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-button:hover {
+  background: #545b62;
+}
+
+.search-confirm-button {
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-confirm-button:hover {
+  background: #0056b3;
+}
+
+.param-group {
+  margin-bottom: 20px;
+}
+
+.param-label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.param-label .required {
+  color: #ff4757;
+  margin-left: 2px;
+}
+
+.param-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.param-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.param-select {
+  width: 100%;
+  padding: 8px 32px 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.param-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.select-wrapper::after {
+  content: '▼';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+  font-size: 12px;
+}
+
+/* 组合框样式 */
+.combo-box-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.combo-input {
+  flex: 1;
+  padding: 8px 40px 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.combo-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.combo-dropdown-btn {
+  width: 32px;
+  padding: 8px 4px;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  background: #f8f9fa;
+  cursor: pointer;
+  font-size: 12px;
+  color: #666;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.combo-dropdown-btn:hover {
+  background: #e9ecef;
+  color: #333;
+}
+
+.combo-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.combo-option {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.combo-option:last-child {
+  border-bottom: none;
+}
+
+.combo-option:hover {
+  background: #f8f9fa;
+}
+
+.combo-option:active {
+  background: #e9ecef;
+}
+
+.time-range {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.time-input-wrapper {
+  position: relative;
+}
+
+.time-input {
+  padding-right: 32px;
+}
+
+.time-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.interval-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.interval-input-wrapper:focus-within {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.interval-input {
+  flex: 1;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  background: transparent;
+}
+
+.interval-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.unit-selector {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-left: 1px solid #e0e0e0;
+  background: #f8f9fa;
+  cursor: pointer;
+  user-select: none;
+}
+
+.unit-text {
+  font-size: 14px;
+  color: #666;
+  margin-right: 4px;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  color: #999;
 }

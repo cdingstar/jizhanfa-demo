@@ -16,6 +16,16 @@
   transform: translateY(-2px);
 }
 
+/* 不可点击状态 */
+.vehicle-cell.non-clickable {
+  cursor: default;
+}
+
+.vehicle-cell.non-clickable:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* 右上角数字标识 */
 .count-indicator {
   position: absolute;

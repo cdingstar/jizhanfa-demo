@@ -1,75 +1,50 @@
-/* 分页控件样式 */
+/* 紧凑分页条样式：贴近内容、更省空间 */
 .pagination-controls {
-  position: fixed;
+  position: sticky; /* 改为粘性定位，跟随内容滚动且不遮挡底部 */
   bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
+  background: #fff;
   border-top: 1px solid #e0e0e0;
-  padding: 8px 20px; /* 减少垂直内边距 */
-  display: flex;
-  justify-content: space-between; /* 分页信息和按钮分布在两端 */
+  padding: 4px 16px; /* 进一步缩小垂直内边距 */
+  display: grid; /* 使用网格，让信息和按钮更紧凑排布 */
+  grid-template-columns: 1fr auto;
   align-items: center;
-  z-index: 100;
-  height: 48px; /* 固定高度，保持细长 */
+  z-index: 10; /* 降低层级，避免盖住弹窗 */
+  min-height: 32px; /* 设置最小高度，保持紧凑 */
 }
 
 .pagination-info {
   color: #6c757d;
-  font-size: 12px; /* 稍微缩小字体 */
-  flex-shrink: 0; /* 防止文字被压缩 */
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pagination-buttons {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 16px; /* 稍微减少间距 */
+  gap: 8px; /* 更小间距 */
 }
 
 .page-btn {
-  padding: 6px 12px; /* 减少内边距 */
+  padding: 3px 8px; /* 进一步缩小按钮内边距 */
   background: #3498db;
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 12px; /* 缩小字体 */
-  transition: background-color 0.2s;
+  font-size: 11px; /* 稍微缩小字体 */
 }
 
-.page-btn:hover:not(:disabled) {
-  background: #2980b9;
-}
+.page-btn:hover:not(:disabled) { background: #2980b9; }
+.page-btn:disabled { background: #bdc3c7; cursor: not-allowed; }
 
-.page-btn:disabled {
-  background: #bdc3c7;
-  cursor: not-allowed;
-}
-
-.page-indicators {
-  display: flex;
-  gap: 3px; /* 减少间距 */
-}
-
+.page-indicators { display: flex; gap: 3px; }
 .page-indicator {
-  width: 28px; /* 缩小尺寸 */
-  height: 28px;
+  width: 22px; height: 22px; /* 进一步缩小页码指示器 */
   border: 1px solid #dee2e6;
-  background: white;
-  color: #6c757d;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px; /* 缩小字体 */
-  transition: all 0.2s;
+  background: #fff; color: #6c757d;
+  border-radius: 3px; cursor: pointer; font-size: 11px;
 }
-
-.page-indicator:hover {
-  background: #e9ecef;
-}
-
-.page-indicator.active {
-  background: #3498db;
-  color: white;
-  border-color: #3498db;
-}
+.page-indicator:hover { background: #e9ecef; }
+.page-indicator.active { background: #3498db; color: #fff; border-color: #3498db; }
