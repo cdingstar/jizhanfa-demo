@@ -186,6 +186,22 @@
   font-size: 16px;
 }
 
+.inline-summary {
+  color: #6c757d;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.inline-summary .number {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* 人脸碰撞页面：去掉导航与正文之间的空隙 */
+.task-result-window.face-collision .navigation-header { margin-bottom: 6px; }
+.task-result-window.face-collision .navigation-breadcrumb { margin-bottom: 4px; }
+.task-result-window.face-collision .result-content { padding-top: 0; }
+
 .content-header {
   display: flex;
   justify-content: space-between;

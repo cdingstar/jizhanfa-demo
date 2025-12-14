@@ -5,6 +5,12 @@
   background: #f8f9fa;
   border-radius: 6px;
   border-left: 4px solid #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .breadcrumb-item {
@@ -47,3 +53,5 @@
 .back-btn:hover {
   background: #5a6268;
 }
+.breadcrumb-left { flex: 1; min-width: 0; }
+.breadcrumb-right { margin-left: 12px; }

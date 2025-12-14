@@ -4,7 +4,9 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import TaskManager from './components/TaskManager';
 import TaskResultWindow from './components/tasks/TaskResultWindow';
+import FaceCollisionResultWindow from './components/tasks/FaceCollisionResultWindow';
 import VehicleResultWindow from './components/tasks/VehicleResultWindow';
+import VehicleCollisionResultWindow from './components/tasks/VehicleCollisionResultWindow';
 
 function App() {
   const [activeMenu, setActiveMenu] = useState('同行人');
@@ -22,8 +24,10 @@ function App() {
     { id: 7, name: '人脸碰撞任务002', createTime: '2025-09-09 16:20:30', progress: 65, type: '人脸碰撞' },
     { id: 8, name: '人脸碰撞任务003', createTime: '2025-09-08 11:05:12', progress: 5, type: '人脸碰撞' },
     { id: 9, name: '人脸碰撞任务004', createTime: '2025-09-06 09:40:00', progress: 100, type: '人脸碰撞' },
-    // 车辆碰撞：1个
-    { id: 10, name: '车辆碰撞检测任务001', createTime: '2025-09-05 14:10:00', progress: 30, type: '车辆碰撞' }
+    // 车辆碰撞：3个
+    { id: 10, name: '车辆碰撞检测任务001', createTime: '2025-09-05 14:10:00', progress: 30, type: '车辆碰撞' },
+    { id: 11, name: '高速公路连环碰撞分析', createTime: '2025-09-09 09:20:15', progress: 85, type: '车辆碰撞' },
+    { id: 12, name: '市区交通事故调查', createTime: '2025-09-10 16:30:45', progress: 100, type: '车辆碰撞' }
   ]);
 
   const handleMenuChange = (menu) => {
@@ -69,6 +73,20 @@ function App() {
       return (
         <VehicleResultWindow 
           task={viewingTask} 
+          onClose={handleCloseTaskView}
+        />
+      );
+    } else if (viewingTask.type === '车辆碰撞') {
+      return (
+        <VehicleCollisionResultWindow 
+          task={viewingTask} 
+          onClose={handleCloseTaskView}
+        />
+      );
+    } else if (viewingTask.type === '人脸碰撞') {
+      return (
+        <FaceCollisionResultWindow
+          task={viewingTask}
           onClose={handleCloseTaskView}
         />
       );

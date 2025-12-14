@@ -4,8 +4,8 @@ import './Sidebar.css';
 const Sidebar = ({ activeMenu, onMenuChange }) => {
   const menuItems = [
     { name: '同行人', icon: '👥' },
-    { name: '同行车辆', icon: '🚗' },
     { name: '人脸碰撞', icon: '👤' },
+    { name: '同行车辆', icon: '🚗' },
     { name: '车辆碰撞', icon: '🚙' }
   ];
 

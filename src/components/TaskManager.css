@@ -345,14 +345,16 @@
   width: 560px;
   max-width: 90vw;
   max-height: 90vh;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 12px 20px;
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -386,8 +388,13 @@
 
 /* 单列表单的模态框主体优化 */
 .modal.medium .modal-body {
-  padding: 16px 24px;
+  padding: 10px 20px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(90vh - 100px);
 }
+
 .form-grid {
   display: grid;
   grid-template-columns: 160px 1fr;
@@ -408,7 +415,7 @@
 
 /* 字段组样式 */
 .field-group {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .field-group:last-child {
@@ -417,8 +424,8 @@
 
 .field-group label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
+  margin-bottom: 3px;
+  font-size: 13px;
   color: #333;
   font-weight: 500;
 }
@@ -426,10 +433,10 @@
 .field-group input[type="text"],
 .field-group input[type="number"] {
   width: 100%;
-  padding: 10px 12px;
+  padding: 6px 10px;
   border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 4px;
+  font-size: 13px;
   outline: none;
   transition: border-color 0.2s;
   box-sizing: border-box;
@@ -498,15 +505,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .scope-header label {
   margin-bottom: 0;
+  font-size: 13px;
 }
 
 .new-scope-btn {
-  padding: 6px 12px;
+  padding: 5px 10px;
   background-color: #4a90e2;
   color: white;
   border: none;
@@ -520,31 +528,90 @@
   background-color: #357abd;
 }
 
+/* 范围项组容器 */
+.scope-item-group {
+  margin-bottom: 6px;
+  padding: 6px 8px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.scope-item-group:last-child {
+  margin-bottom: 0;
+}
+
 .scope-item {
   display: grid;
-  grid-template-columns: 80px 1fr 40px 60px;
-  gap: 10px;
+  grid-template-columns: 50px 1fr 28px 42px;
+  gap: 5px;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .scope-item:last-child {
   margin-bottom: 0;
 }
 
+/* 范围时间选择 */
+.scope-time-range {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  padding-left: 50px;
+}
+
+.scope-time-range label {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.scope-time-range .range-row {
+  flex: 1;
+}
+
+/* datetime-local 输入框样式 */
+.scope-time-range input[type="datetime-local"] {
+  padding: 4px 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+  color: #333;
+  height: 26px;
+}
+
+.scope-time-range input[type="datetime-local"]:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+.scope-time-range input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 1px;
+  width: 14px;
+  height: 14px;
+}
+
 .scope-label {
-  font-size: 14px;
+  font-size: 12px;
   color: #333;
   font-weight: 500;
 }
 
 .scope-item input {
-  padding: 8px 12px;
+  padding: 4px 6px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px;
   outline: none;
   transition: border-color 0.2s;
+  height: 26px;
 }
 
 .scope-item input:focus {
@@ -553,14 +620,16 @@
 }
 
 .delete-scope-btn {
-  padding: 6px 10px;
+  padding: 3px 5px;
   background-color: #f44336;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 12px;
+  border-radius: 3px;
+  font-size: 11px;
   cursor: pointer;
   transition: background-color 0.2s;
+  height: 24px;
+  line-height: 1;
 }
 
 .delete-scope-btn:hover:not(:disabled) {
@@ -574,13 +643,13 @@
 
 /* 范围项中的加号按钮 */
 .scope-item .scope-plus {
-  height: 32px;
-  width: 32px;
+  height: 24px;
+  width: 24px;
   border: 1px solid #ddd;
   background: #fff;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
   transition: all 0.2s;
   display: flex;
@@ -644,7 +713,7 @@
 
 /* 中等尺寸模态框的底部优化 */
 .modal.medium .modal-footer {
-  padding: 12px 24px;
+  padding: 10px 20px;
 }
 
 .cancel-btn, .confirm-btn {
